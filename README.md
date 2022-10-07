@@ -193,3 +193,61 @@ az containerapp create `
 ```
 
 Most of the parameters are self-explanatory. The `--enable-dapr` parameter enables Dapr for the Azure Container App. The `--dapr-app-id` parameter is the Dapr application id. The `--dapr-app-port` parameter is the port on which the Dapr sidecar will listen for requests. The `--min-replicas` and `--max-replicas` parameters are used to specify the minimum and maximum number of replicas for the Azure Container App.
+
+### Create RabbitMQ Consumer Azure Container App
+
+Next we create an Azure Container App for the RabbitMQ Consumer. The script runs the following command to create the Azure Container App:
+
+```Powershell
+
+az containerapp create `
+    --environment $environmentName `
+    --resource-group $resourceGroupName `
+    --name techtalks-consumer `
+    --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp `
+    --registry-server ngacrregistry.azurecr.io `
+    --target-port 80 `
+    --ingress 'internal' `
+    --enable-dapr `
+    --dapr-app-id rabbitmq-consumer `
+    --dapr-app-port 80 `
+    --min-replicas 1
+
+```
+
+Here also the parameters are self-explanatory. The only difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster.
+
+### Enable KEDA for the Azure Container Apps
+
+We need to enable KEDA for the Azure Container Apps. This will allow us to scale the Azure Container App for techtalks consumer based on the queue length.
+
+First we create a secret for the RabbitMQ cluster. The script runs the following command to create the secret:
+
+```Powershell
+
+az containerapp secret set `
+    --name techtalks-consumer `
+    --resource-group $resourceGroupName `
+    --secrets "rabbitmq-host=amqp://user:tCUN6UizuwTZ@20.24.98.54:5672/"
+
+```
+
+Next we create a KEDA scaler for the Azure Container App. The script runs the following command to create the scaler:
+
+```Powershell
+
+az containerapp update `
+    --name techtalks-consumer `
+    --resource-group $resourceGroupName `
+    --min-replicas 1 `
+    --max-replicas 15 `
+    --scale-rule-name "rabbitmq-keda-autoscale" `
+    --scale-rule-type "rabbitmq" `
+    --scale-rule-auth "host=rabbitmq-host" `
+    --scale-rule-metadata "queueName=rabbitmq-consumer-techtalks" `
+    "mode=QueueLength" `
+    "value=50" `
+    "protocol=amqp" `
+    "hostFromEnv=rabbitmq-host"
+
+```
