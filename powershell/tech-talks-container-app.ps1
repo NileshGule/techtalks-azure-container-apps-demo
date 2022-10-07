@@ -141,3 +141,14 @@ az containerapp update `
 # -g azure-container-app-rg `
 # --dapr-component-name rabbitmq-pubsub `
 # --name aci-dev-env
+
+# az vm create `
+#     --resource-group azure-container-app-rg `
+#     --name rabbitmq-new `
+#     --admin-username azureuser `
+#     --generate-ssh-keys `
+#     --image bitnami:rabbitmq:rabbitmq:latest `
+#     --plan-name rabbitmq `
+#     --plan-product rabbitmq `
+#     --plan-publisher bitnami `
+#     --public-ip-sku Standard
