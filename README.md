@@ -7,7 +7,7 @@ This repository is a demo for the Azure Container Apps. It showcases how to depl
 - Azure Subscription
 - Azure Container Registry (ACR) to publish the container images
 - Azure CLI
-- Docker
+- Docker Desktop
 - RabbitMQ cluster
 - Enable Azure Container Apps for your subscription
 
@@ -68,7 +68,9 @@ az acr repository list --name ngacrregistry
 The output looks something like this:
 ![docker images](/images/container-registry-list.png)
 
-Note : Your output might be different depending on the different repositories you have in your container registry. You can also use the Azure Portal to verify the container images.
+Note : Your output might be different depending on the different repositories you have in your container registry.
+
+You can also use the Azure Portal to verify the container images.
 
 Navigate to the container registry in the Azure Portal and click on the `Repositories` tab. The output will be similar to the following:
 ![Images from container registry](/images/azure-portal-repositories.png)
@@ -127,3 +129,67 @@ az provider register --namespace Microsoft.App
 az provider register --namespace Microsoft.OperationalInsights
 
 ```
+
+### Create Azure Container Apps environment
+
+In order to make things easier, I have created a small powershell script to run all the commands related to setting up of the Azure Container Apps. You can find the script [here](powershell/setup-tech-talks-container-app.ps1).
+
+This script takes following parameters:
+
+- subscriptionName: The name of the subscription, defaults to `Microsoft Azure Sponsorship`
+- resourceGroupName: The name of the resource group, defaults to `azure-container-app-rg`
+- resourceGroupLocation: The location of the resource group, defaults to `eastus`
+- `environmentName` : Name of the environment, default value is `aci-dev-env`
+
+You can override the default values.
+
+First thing we need is to create an environment for the Azure Container Apps. Run the following command to create an environment:
+
+```Powershell
+
+az containerapp env create `
+    --name $environmentName `
+    --resource-group $resourceGroupName `
+    --location $resourceGroupLocaltion
+
+```
+
+This will create an environment for the Azure Container Apps. The environment acts as a namespace for the Azure Container Apps. You can create multiple environments for different environments like dev, test, prod etc. For simplicity we will be using a single environment.
+
+### Create a Dapr component for RabbitMQ
+
+We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component:
+
+```Powershell
+
+az containerapp env dapr-component set `
+    --name $environmentName `
+    --resource-group $resourceGroupName `
+    --dapr-component-name rabbitmq-pubsub `
+    --yaml ../k8s/Dapr-components/rabbitmq-dapr.yaml
+
+```
+
+### Create RabbitMQ Producer Azure Container App
+
+Next we create an Azure Container App for the RabbitMQ Producer. The script runs the following command to create the Azure Container App:
+
+```Powershell
+
+az containerapp create `
+    --environment $environmentName `
+    --resource-group $resourceGroupName `
+    --name techtalks-producer `
+    --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp `
+    --registry-server ngacrregistry.azurecr.io `
+    --target-port 80 `
+    --ingress 'external' `
+    --enable-dapr `
+    --dapr-app-id rabbitmq-producer `
+    --dapr-app-port 80 `
+    --min-replicas 1 `
+    --max-replicas 3
+
+```
+
+Most of the parameters are self-explanatory. The `--enable-dapr` parameter enables Dapr for the Azure Container App. The `--dapr-app-id` parameter is the Dapr application id. The `--dapr-app-port` parameter is the port on which the Dapr sidecar will listen for requests. The `--min-replicas` and `--max-replicas` parameters are used to specify the minimum and maximum number of replicas for the Azure Container App.
