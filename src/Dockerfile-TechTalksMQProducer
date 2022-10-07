@@ -1,0 +1,28 @@
+FROM mcr.microsoft.com/dotnet/sdk:6.0-alpine AS build-env
+
+WORKDIR /app
+
+COPY TechTalksMQProducer /TechTalksMQProducer/
+COPY TechTalksModel /TechTalksModel/
+
+# COPY NuGet.config ./
+
+WORKDIR /TechTalksMQProducer
+RUN dotnet restore
+
+#COPY . ./
+
+RUN dotnet publish --configuration Release --output releaseOutput --no-restore
+
+#build runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine
+
+
+WORKDIR /TechTalksMQProducer
+
+COPY --from=build-env /TechTalksMQProducer/releaseOutput ./
+
+#run the container as non-root user
+#USER 1000
+
+ENTRYPOINT ["dotnet", "TechTalksMQProducer.dll"]

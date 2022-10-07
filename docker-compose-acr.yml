@@ -1,0 +1,14 @@
+version: "3"
+
+services:
+  techtalks.producer:
+    image: ngacrregistry.azurecr.io/nileshgule/techtalksproducer:dapr
+    build:
+      context: src
+      dockerfile: Dockerfile-TechTalksMQProducer
+
+  techtalks.consumer:
+    image: ngacrregistry.azurecr.io/nileshgule/techtalksconsumer:dapr
+    build:
+      context: src
+      dockerfile: Dockerfile-TechTalksConsumer
