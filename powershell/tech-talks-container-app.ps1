@@ -54,7 +54,7 @@ az containerapp create `
     --environment $environmentName `
     --resource-group $resourceGroupName `
     --name techtalks-producer `
-    --image ngacrregistry.azurecr.io/nileshgule/techtalksproducer:dapr `
+    --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp `
     --registry-server ngacrregistry.azurecr.io `
     --target-port 80 `
     --ingress 'external' `
@@ -76,7 +76,7 @@ az containerapp create `
     --environment $environmentName `
     --resource-group $resourceGroupName `
     --name techtalks-consumer `
-    --image ngacrregistry.azurecr.io/nileshgule/techtalksconsumer:dapr `
+    --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp `
     --registry-server ngacrregistry.azurecr.io `
     --target-port 80 `
     --ingress 'internal' `
@@ -103,7 +103,7 @@ az containerapp update `
     --resource-group $resourceGroupName `
     --min-replicas 1 `
     --max-replicas 15 `
-    --scale-rule-name "queue-length" `
+    --scale-rule-name "rabbitmq-keda-autoscale" `
     --scale-rule-type "rabbitmq" `
     --scale-rule-auth "host=rabbitmq-host" `
     --scale-rule-metadata "queueName=rabbitmq-consumer-techtalks" `
