@@ -27,7 +27,7 @@ The source code for the application is available in the [src](src) folder.
 
 To build the docker images, run the following commands:
 
-```bash
+```Powershell
 
 docker-compose -f docker-compose-acr.yml build
 
@@ -37,7 +37,7 @@ This will build the images for both the microservices and tag them with the tag 
 
 We can verify that the images are created successfully by running the following command:
 
-```bash
+```Powershell
 
 docker images
 
@@ -51,7 +51,7 @@ The output should look like this:
 
 Next step is to push the images to the Azure Container Registry (ACR). Run the following command:
 
-```bash
+```Powershell
 
 docker-compose -f docker-compose-acr.yml push
 
@@ -59,7 +59,7 @@ docker-compose -f docker-compose-acr.yml push
 
 We can verify the container images are pushed to the Azure Container Registry (ACR) by running the following command:
 
-```bash
+```Powershell
 
 az acr repository list --name ngacrregistry
 
@@ -81,7 +81,7 @@ We are now all set to deploy the application to Azure Container Apps.
 
 ## Deploy the application to Azure Container Apps
 
-### Create RabbitMQ cluster
+### Create `RabbitMQ` cluster
 
 We need to create a RabbitMQ cluster to be used by the application. We can use the Azure Marketplace to create a RabbitMQ cluster. Navigate to the Azure Marketplace and search for `RabbitMQ`. Select the `RabbitMQ by Bitnami` option and click on `Create`.
 
@@ -91,14 +91,16 @@ Make sure the name the VM as `rabbitmq` and the resource group as `azure-contain
 
 Run the following commands to enable the RabbitMQ ports:
 
-```bash
-az vm open-port --port 5672 --name rabbitmq  \
+```Powershell
+az vm open-port --port 5672 --name rabbitmq  `
     --resource-group azure-container-app-rg
 
-az vm open-port --port 15672 --name rabbitmq \
+az vm open-port --port 15672 --name rabbitmq `
     --resource-group azure-container-app-rg --priority 1100
 
 ```
+
+`5672` port is used by the RabbitMQ cluster to communicate with the microservices. `15672` port is used to access the RabbitMQ management console.
 
 ### Enable Azure Container Apps for your subscription
 
@@ -108,7 +110,7 @@ Setup Azure CLI extensions
 
 #### Install Azure Container Apps extension for the CLI
 
-```code
+```powershell
 
 az extension add --name containerapp --upgrade
 
@@ -116,7 +118,7 @@ az extension add --name containerapp --upgrade
 
 #### Register the `Microsoft.App` namespace
 
-```code
+```powershell
 
 az provider register --namespace Microsoft.App
 
@@ -124,7 +126,7 @@ az provider register --namespace Microsoft.App
 
 #### Register the `Microsoft.OperationalInsights` provider for the Azure Monitor Log Analytics workspace
 
-```code
+```powershell
 
 az provider register --namespace Microsoft.OperationalInsights
 
@@ -143,7 +145,7 @@ This script takes following parameters:
 
 You can override the default values.
 
-First thing we need is to create an environment for the Azure Container Apps. Run the following command to create an environment:
+First thing we need is to create an environment for the Azure Container Apps. The script run the following command to create an environment:
 
 ```Powershell
 
@@ -251,3 +253,5 @@ az containerapp update `
     "hostFromEnv=rabbitmq-host"
 
 ```
+
+The `--scale-rule-name` parameter is the name of the scaler. The `--scale-rule-type` parameter is the type of the scaler. The `--scale-rule-auth` parameter is the name of the secret that contains the RabbitMQ connection string. The `--scale-rule-metadata` parameter contains the metadata for the scaler. The `queueName` parameter is the name of the queue. The `mode` parameter is the mode of the scaler. The `value` parameter is the value for the scaler. The `protocol` parameter is the protocol to use for the scaler. The `hostFromEnv` parameter is the name of the environment variable that contains the RabbitMQ connection string.
