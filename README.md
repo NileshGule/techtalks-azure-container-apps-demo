@@ -19,33 +19,9 @@ Note: I am using a `Azure Container Registry (ACR)` to publish the container ima
 
 Follow the steps mentioned in the [build container images](docs/build-container-images.md) to build the container images for TechTalks Producer and Consumer applications.
 
-### Push the docker images to the container registry
+## Push the docker images to the container registry
 
-Next step is to push the images to the Azure Container Registry (ACR). Run the following command:
-
-```Powershell
-
-docker-compose -f docker-compose-acr.yml push
-
-```
-
-We can verify the container images are pushed to the Azure Container Registry (ACR) by running the following command:
-
-```Powershell
-
-az acr repository list --name ngacrregistry
-
-```
-
-The output looks something like this:
-![docker images](/images/container-registry-list.png)
-
-Note : Your output might be different depending on the different repositories you have in your container registry.
-
-You can also use the Azure Portal to verify the container images.
-
-Navigate to the container registry in the Azure Portal and click on the `Repositories` tab. The output will be similar to the following:
-![Images from container registry](/images/azure-portal-repositories.png)
+Follow the steps mentioned in the [publish container images to registry](docs/publish-contianer-images-to-registry.md) to push the container images to the container registry.
 
 We are now all set to deploy the application to Azure Container Apps.
 
