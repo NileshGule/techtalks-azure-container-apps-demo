@@ -154,6 +154,12 @@ az containerapp list -g azure-container-app-rg --output table
 
 Note that at the time of taking the screenshot, both the RabbitMQ Producer and Consumer Azure Container Apps were deployed. The RabbitMQ Producer Azure Container App is the one with the name `techtalks-producer`.
 
+### Verify RabbitMQ Producer Azure Container App using Azure Portal
+
+We can verify the RabbitMQ Producer Azure Container App has been created successfully using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and you should see the RabbitMQ Producer Azure Container App created. Clicking on the name `techtalks-producer` will show the details of the Azure Container App.
+
+![Verify RabbitMQ Producer Azure Container App using Azure Portal](/images/verify-techtalks-producer-app-portal.png)
+
 ## Create RabbitMQ Consumer Azure Container App
 
 Next we create an Azure Container App for the RabbitMQ Consumer. The script runs the following command to create the Azure Container App:
