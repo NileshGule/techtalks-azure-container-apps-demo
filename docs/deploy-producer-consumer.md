@@ -1,5 +1,14 @@
 # Deploy RabbitMQ Producer and Consumer applications to Azure Container Apps
 
+We will perform following steps to deploy the RabbitMQ Producer and Consumer applications to Azure Container Apps:
+
+- Create Azure Container Apps environment
+- Create a Dapr Pubsub component for RabbitMQ
+- Create TechTalks Producer Azure Container App
+- Create TechTalks Consumer Azure Container App
+
+## Automate the deployment process using a Powershell script
+
 In order to make things easier, I have created a small powershell script to run all the commands related to setting up of the Azure Container Apps. You can find the script [here](powershell/setup-tech-talks-container-app.ps1).
 
 This script takes following parameters:
@@ -28,6 +37,8 @@ If you wish to override of the default values, pass the name of the parameter an
 Here we are overriding the `resourceGroupName` with the value `my-resource-group` and `resourceGroupLocation` with `westus` parameters.
 
 Below is the description of each of the steps performed by the Powershell script.
+
+---
 
 ## Create Azure Container Apps environment
 
@@ -63,6 +74,8 @@ This will list all the environments for the subscription. You should see the env
 We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and you should see the environment created.
 
 ![Verify Azure Contianer Apps Environment](/images/verify-azure-container-apps-environment.png)
+
+---
 
 ## Create a Dapr component for RabbitMQ
 
@@ -116,6 +129,8 @@ We can verify the Dapr component using the Azure Portal. Navigate to the Resourc
 
 ![Verify Dapr component using Azure Portal](/images/verify-rabbitmq-dapr-component-pubsub-portal.png)
 
+---
+
 ## Create RabbitMQ Producer Azure Container App
 
 Next we create an Azure Container App for the RabbitMQ Producer. The script runs the following command to create the Azure Container App:
@@ -162,6 +177,8 @@ We can verify the RabbitMQ Producer Azure Container App has been created success
 
 ![Verify RabbitMQ Producer Azure Container App using Azure Portal](/images/verify-techtalks-producer-app-portal.png)
 
+---
+
 ## Create RabbitMQ Consumer Azure Container App
 
 Next we create an Azure Container App for the RabbitMQ Consumer. The script runs the following command to create the Azure Container App:
@@ -185,7 +202,7 @@ az containerapp create `
 
 Here also the parameters are self-explanatory. The only major difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster. We are also not setting the `--max-replicas` parameter. This means that the consumer will not scale up.
 
-We do not want the consumer to scale up using the default scaling mechanism used by the Azure Container Apps. We want to demonstrate the behavior of autoscaling using Kubernetes-based Event Driven Autoscaling (KEDA). We will see how to configure KEDA in the later section.
+We do not want the consumer to scale up using the default scaling mechanism used by the Azure Container Apps. We want to demonstrate the behavior of autoscaling using `Kubernetes-based Event Driven Autoscaling (KEDA)`. We will see how to configure KEDA autoscaler in the later section.
 
 ### Verify RabbitMQ Consumer Azure Container App using CLI
 
