@@ -78,6 +78,34 @@ az containerapp env dapr-component set `
 
 ```
 
+All the metadata related to the RabbitMQ cluster is stored in the `rabbitmq-dapr.yaml` file. You can find the file [here](config/Dapr-components/rabbitmq-dapr.yaml). The file contains the following metadata:
+
+- `host`: The hostname of the RabbitMQ cluster
+- `durable`: Whether the queue is durable or not
+- `deleteWhenUnused`: Whether the queue should be deleted when not used
+- `autoAck`: Whether the message should be auto acknowledged or not
+- `prefetchCount`: The number of messages to prefetch
+- `reconnectWait`: The time to wait before reconnecting to the RabbitMQ cluster
+- `concurrencyMode`: The concurrency mode for the consumer
+- `exchangeKind`: The kind of the exchange
+
+### Verify Dapr component using CLI
+
+We can verify the Dapr component using the following command:
+
+```Powershell
+
+az containerapp env dapr-component list `
+    --name $environmentName `
+    --resource-group $resourceGroupName `
+    --output table
+
+```
+
+This will list all the Dapr components for the environment. You should see the Dapr component created in the previous step. We are using the `--output table` parameter to get the output in a tabular format.
+
+![Verify Dapr component using CLI](/images/verify-rabbitmq-dapr-component-pubsub-cli.png)
+
 ## Create RabbitMQ Producer Azure Container App
 
 Next we create an Azure Container App for the RabbitMQ Producer. The script runs the following command to create the Azure Container App:
