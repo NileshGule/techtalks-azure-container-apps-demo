@@ -110,7 +110,7 @@ This will list all the Dapr components for the environment. You should see the D
 
 ### Verify Dapr component using Azure Portal
 
-We can verify the Dapr component using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and go to the details of the Azure Container Apps environment. In the left pane we can find the Dapr components. You should see the Dapr component created in the previous step.Clicking on the name `rabbitmq-pubsub` will show the details of the Dapr component which we specified in the metadata using the `rabbitmq-dapr.yaml` file.
+We can verify the Dapr component using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and go to the details of the Azure Container Apps environment. In the left pane we can find the Dapr components under the settings section. You should see the Dapr component created in the previous step.Clicking on the name `rabbitmq-pubsub` will show the details of the Dapr component which we specified in the metadata using the `rabbitmq-dapr.yaml` file.
 
 ![Verify Dapr component using Azure Portal](/images/verify-rabbitmq-dapr-component-pubsub-portal.png)
 
@@ -137,6 +137,22 @@ az containerapp create `
 ```
 
 Most of the parameters are self-explanatory. The `--enable-dapr` parameter enables Dapr for the Azure Container App. The `--dapr-app-id` parameter is the Dapr application id. The `--dapr-app-port` parameter is the port on which the Dapr sidecar will listen for requests. The `--min-replicas` and `--max-replicas` parameters are used to specify the minimum and maximum number of replicas for the Azure Container App.
+
+We do not expect the RabbitMQ Producer to receive a lot of requests. So we are using a minimum of 1 replica and a maximum of 3 replicas. This will ensure that we have at least 1 replica running at all times and we can scale up to 3 replicas if needed.
+
+### Verify RabbitMQ Producer Azure Container App using CLI
+
+We can verify the RabbitMQ Producer Azure Container App has been created successfully using the following command:
+
+```Powershell
+
+az containerapp list -g azure-container-app-rg --output table
+
+```
+
+![Verify RabbitMQ Producer Azure Container App using CLI](/images/verify-azure-container-apps-environment-cli.png)
+
+Note that at the time of taking the screenshot, both the RabbitMQ Producer and Consumer Azure Container Apps were deployed. The RabbitMQ Producer Azure Container App is the one with the name `techtalks-producer`.
 
 ## Create RabbitMQ Consumer Azure Container App
 
