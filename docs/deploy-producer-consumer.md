@@ -56,7 +56,7 @@ We can verify the environment using the following command:
 
 We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the contianer app in the Azure Portal and you should see the environment created.
 
-![Verify Azure Contianer Apps Environment](images/verify-azure-container-apps-environment.png)
+![Verify Azure Contianer Apps Environment](/images/verify-azure-container-apps-environment.png)
 
 ## Create a Dapr component for RabbitMQ
 
