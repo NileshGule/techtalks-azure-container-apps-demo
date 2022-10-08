@@ -21,5 +21,22 @@ We will create an exchange named `techtalks` of the type `fanout`. The producer 
 Ensure the techtalks exchange has following properties:
 
 - Name: `techtalks`
-- Type: fanout
-- Durablility: Durable
+- Type: `fanout`
+- Durablility: `Durable`
+
+## Create a Queue
+
+We will create a queue named `rabbitmq-consumer-techtalks`. The consumer will consume messages from the queue. Since we are using Dapr pubsub component, we need to follow some conventions. The queue name maps the consumer application name followed by the topic name.
+
+When running an application with app-id as `rabbitmq-consumer` with RabbitMQ subscription, a queue is created with a prepended appid (e.g. {appid}-{queueName}).
+
+Using this convention, the queue name will be `rabbitmq-consumer-techtalks`. Make the queue durable so that the messages are not lost when the consumer is not running.
+
+![RabbitMQ consumer TechTalks queue](/images/rabbitmq-consumer-techtalks-queue.png)
+
+Ensure the rabbitmq-consumer-techtalks queue has following properties:
+
+- Name: `rabbitmq-consumer-techtalks`
+- Durablility: `Durable`
+- Auto-delete: `No`
+- Type: `Classic`
