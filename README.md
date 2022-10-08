@@ -41,33 +41,7 @@ Follow the steps mentioned in the [configure RabbitMQ queue](docs/configure-rabb
 
 ### Enable Azure Container Apps for your subscription
 
-Run the following command to enable Azure Container Apps for your subscription:
-
-Setup Azure CLI extensions
-
-#### Install Azure Container Apps extension for the CLI
-
-```powershell
-
-az extension add --name containerapp --upgrade
-
-```
-
-#### Register the `Microsoft.App` namespace
-
-```powershell
-
-az provider register --namespace Microsoft.App
-
-```
-
-#### Register the `Microsoft.OperationalInsights` provider for the Azure Monitor Log Analytics workspace
-
-```powershell
-
-az provider register --namespace Microsoft.OperationalInsights
-
-```
+Follow the steps mentioned in the [enable Azure Container Apps](docs/enable-azure-container-apps.md) to enable Azure Container Apps for your subscription.
 
 ### Create Azure Container Apps environment
 
