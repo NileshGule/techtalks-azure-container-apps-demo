@@ -91,7 +91,7 @@ az containerapp create `
     
 Write-Host "Successfully created Azure Container App for Consumer "  -ForegroundColor Yellow
 
-##Create a new secret named 'svcbus-connstring' in backend processer container app
+##Create a new secret named 'rabbitmq-host' in backend processer container app
 az containerapp secret set `
     --name techtalks-consumer `
     --resource-group $resourceGroupName `
