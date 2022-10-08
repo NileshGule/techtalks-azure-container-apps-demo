@@ -44,7 +44,7 @@ az containerapp env dapr-component set `
     --name $environmentName `
     --resource-group $resourceGroupName `
     --dapr-component-name rabbitmq-pubsub `
-    --yaml ../k8s/Dapr-components/rabbitmq-dapr.yaml
+    --yaml ../config/Dapr-components/rabbitmq-dapr.yaml
 
 Write-Host "Successfully created Dapr Pubsub component "  -ForegroundColor Yellow
 

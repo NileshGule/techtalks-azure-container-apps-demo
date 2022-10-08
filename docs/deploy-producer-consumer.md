@@ -4,9 +4,9 @@ In order to make things easier, I have created a small powershell script to run 
 
 This script takes following parameters:
 
-- subscriptionName: The name of the subscription, defaults to `Microsoft Azure Sponsorship`
-- resourceGroupName: The name of the resource group, defaults to `azure-container-app-rg`
-- resourceGroupLocation: The location of the resource group, defaults to `eastus`
+- `subscriptionName`: The name of the subscription, defaults to `Microsoft Azure Sponsorship`
+- `resourceGroupName` : The name of the resource group, defaults to `azure-container-app-rg`
+- `resourceGroupLocation` : The location of the resource group, defaults to `eastus`
 - `environmentName` : Name of the environment, default value is `aci-dev-env`
 
 You can override the default values. We can run the whole script with default parameters by running the following command:
@@ -44,6 +44,20 @@ az containerapp env create `
 
 This will create an environment for the Azure Container Apps. The environment acts as a namespace for the Azure Container Apps. You can create multiple environments for different environments like dev, test, prod etc. For simplicity we will be using a single environment.
 
+### Verify Azure Container Apps environment using CLI
+
+We can verify the environment using the following command:
+
+```Powershell
+
+```
+
+### Verify Azure Container Apps environment using Azure Portal
+
+We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the contianer app in the Azure Portal and you should see the environment created.
+
+![Verify Azure Contianer Apps Environment](images/verify-azure-container-apps-environment.png)
+
 ## Create a Dapr component for RabbitMQ
 
 We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component:
@@ -54,7 +68,7 @@ az containerapp env dapr-component set `
     --name $environmentName `
     --resource-group $resourceGroupName `
     --dapr-component-name rabbitmq-pubsub `
-    --yaml ../k8s/Dapr-components/rabbitmq-dapr.yaml
+    --yaml ../config/Dapr-components/rabbitmq-dapr.yaml
 
 ```
 
