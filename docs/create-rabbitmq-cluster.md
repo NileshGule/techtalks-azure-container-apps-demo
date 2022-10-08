@@ -48,7 +48,7 @@ cat ./bitnami_credentials
 
 The output of the command will be similar to the following:
 
-![RabbitMQ default password](/images/rabbitmq-default-password.png)
+![RabbitMQ default password](/images/default-rabbitmq-password.png)
 
 ## Update the RabbitMQ password
 
