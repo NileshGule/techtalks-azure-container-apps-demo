@@ -31,24 +31,9 @@ We are now all set to deploy the application to Azure Container Apps.
 
 ### Create `RabbitMQ` cluster
 
-We need to create a RabbitMQ cluster to be used by the application. We can use the Azure Marketplace to create a RabbitMQ cluster. Navigate to the Azure Marketplace and search for `RabbitMQ`. Select the `RabbitMQ by Bitnami` option and click on `Create`.
+Follow the steps mentioned in the [create RabbitMQ cluster](docs/create-rabbitmq-cluster.md) to create a RabbitMQ cluster.
 
-Make sure the name the VM as `rabbitmq` and the resource group as `azure-container-app-rg`. This is important as we will be using the same name in the next step.
-
-#### Enable RabbitMQ ports
-
-Run the following commands to enable the RabbitMQ ports:
-
-```Powershell
-az vm open-port --port 5672 --name rabbitmq  `
-    --resource-group azure-container-app-rg
-
-az vm open-port --port 15672 --name rabbitmq `
-    --resource-group azure-container-app-rg --priority 1100
-
-```
-
-`5672` port is used by the RabbitMQ cluster to communicate with the microservices. `15672` port is used to access the RabbitMQ management console.
+If you have an existing RabbitMQ cluster, you can skip this step. In this case you will need to update the configuration for the Dapr Pubsub component to point to your RabbitMQ cluster. The same configuration needs to be updated for the KEDA autoscaler configuration.
 
 ### Enable Azure Container Apps for your subscription
 
