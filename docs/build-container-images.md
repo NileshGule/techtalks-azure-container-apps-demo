@@ -12,7 +12,7 @@ THe usual practice is to have the Dockerfile in the same project directory as th
 
 ## Build container images using `docker-compose` command
 
-To build the docker images, run the `docker-compose` command by passing the `[docker-compose-acr.yaml](docker-compose-acr.yml)` file as an argument.
+To build the docker images, run the `docker-compose` command by passing the [docker-compose-acr.yml](docker-compose-acr.yml) file as an argument.
 
 ```Powershell
 
