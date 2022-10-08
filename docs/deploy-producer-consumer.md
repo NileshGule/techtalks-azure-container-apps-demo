@@ -91,6 +91,8 @@ All the metadata related to the RabbitMQ cluster is stored in the `rabbitmq-dapr
 - `concurrencyMode`: The concurrency mode for the consumer
 - `exchangeKind`: The kind of the exchange
 
+One important thing to note here is the `prefetchCount` value. This value is set to `50` which means that the consumer will receive 50 message at a time. This is done to demonstrate the behavior of the Azure Container Apps. If the value is set to `0` or `null`, the consumer will receive all the messages at once. This is not what we want to demonstrate in this tech talk. You can adjust this value as per your requirement. You can find more information about the RabbitMQ Dapr component [RabbitQM PubSub docs](https://docs.dapr.io/reference/components-reference/supported-pubsub/setup-rabbitmq/)
+
 ### Verify Dapr component using CLI
 
 We can verify the Dapr component using the following command:
