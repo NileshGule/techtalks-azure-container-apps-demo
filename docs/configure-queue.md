@@ -40,3 +40,13 @@ Ensure the rabbitmq-consumer-techtalks queue has following properties:
 - Durablility: `Durable`
 - Auto-delete: `No`
 - Type: `Classic`
+
+## Bind the Queue to the Exchange
+
+We will bind the queue to the exchange. This will ensure that the messages published to the exchange will be routed to the queue.
+
+Navigate back to the Exchanges page and click on the `techtalks` exchange. Click on the `Bindings` tab and click on the `Add a binding` button. Provide the name of the queue as `rabbitmq-consumer-techtalks` and click on the `Bind` button. This will bind the queue to the exchange.
+
+In the screenshot below, we can see that the queue `rabbitmq-consumer-techtalks` is already bound to the exchange `techtalks`.
+
+![Bind queue to exchange](/images/bind-queue-to-exchange.png)
