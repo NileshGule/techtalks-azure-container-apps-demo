@@ -11,7 +11,7 @@ This repository is a demo for the Azure Container Apps. It showcases how to depl
 - RabbitMQ cluster
 - Enable Azure Container Apps for your subscription
 
-Note: I am using a Azure Container Registry (ACR) to publish the container images. You can use any container registry of your choice.
+Note: I am using a `Azure Container Registry (ACR)` to publish the container images. You can use any container registry of your choice.
 
 ---
 
