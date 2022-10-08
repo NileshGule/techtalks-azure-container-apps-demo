@@ -60,13 +60,15 @@ This will list all the environments for the subscription. You should see the env
 
 ### Verify Azure Container Apps environment using Azure Portal
 
-We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the contianer app in the Azure Portal and you should see the environment created.
+We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and you should see the environment created.
 
 ![Verify Azure Contianer Apps Environment](/images/verify-azure-container-apps-environment.png)
 
 ## Create a Dapr component for RabbitMQ
 
-We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component:
+We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component with the name `rabbitmq-pubsub` :
+
+````Powershell
 
 ```Powershell
 
@@ -76,7 +78,7 @@ az containerapp env dapr-component set `
     --dapr-component-name rabbitmq-pubsub `
     --yaml ../config/Dapr-components/rabbitmq-dapr.yaml
 
-```
+````
 
 All the metadata related to the RabbitMQ cluster is stored in the `rabbitmq-dapr.yaml` file. You can find the file [here](config/Dapr-components/rabbitmq-dapr.yaml). The file contains the following metadata:
 
@@ -105,6 +107,12 @@ az containerapp env dapr-component list `
 This will list all the Dapr components for the environment. You should see the Dapr component created in the previous step. We are using the `--output table` parameter to get the output in a tabular format.
 
 ![Verify Dapr component using CLI](/images/verify-rabbitmq-dapr-component-pubsub-cli.png)
+
+### Verify Dapr component using Azure Portal
+
+We can verify the Dapr component using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and go to the details of the Azure Container Apps environment. In the left pane we can find the Dapr components. You should see the Dapr component created in the previous step.Clicking on the name `rabbitmq-pubsub` will show the details of the Dapr component which we specified in the metadata using the `rabbitmq-dapr.yaml` file.
+
+![Verify Dapr component using Azure Portal](/images/verify-rabbitmq-dapr-component-pubsub-portal.png)
 
 ## Create RabbitMQ Producer Azure Container App
 
