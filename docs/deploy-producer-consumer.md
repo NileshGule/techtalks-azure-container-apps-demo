@@ -182,3 +182,13 @@ az containerapp create `
 ```
 
 Here also the parameters are self-explanatory. The only difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster.
+
+### Verify RabbitMQ Consumer Azure Container App using CLI
+
+The steps to verify the RabbitMQ Consumer Azure Container App are the same as the RabbitMQ Producer Azure Container App. Infact we can use the same command to verify the RabbitMQ Consumer Azure Container App which we saw in the output of the earlier command when we tried to verify the RabbitMQ Producer Azure Container App.
+
+### Verify RabbitMQ Consumer Azure Container App using Azure Portal
+
+The steps to verify the RabbitMQ Consumer Azure Container App are the same as the RabbitMQ Producer Azure Container App. Instead of clicking on the name `techtalks-producer`, we need to click on the name `techtalks-consumer`.
+
+![Verify RabbitMQ Consumer Azure Container App using Azure Portal](/images/verify-techtalks-consumer-app-portal.png)
