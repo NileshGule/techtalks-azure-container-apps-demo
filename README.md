@@ -29,110 +29,27 @@ We are now all set to deploy the application to Azure Container Apps.
 
 ## Deploy the application to Azure Container Apps
 
-### Create `RabbitMQ` cluster
+### 1 - Create `RabbitMQ` cluster
 
 Follow the steps mentioned in the [create RabbitMQ cluster](docs/create-rabbitmq-cluster.md) to create a RabbitMQ cluster.
 
 If you have an existing RabbitMQ cluster, you can skip this step. In this case you will need to update the configuration for the Dapr Pubsub component to point to your RabbitMQ cluster. The same configuration needs to be updated for the KEDA autoscaler configuration.
 
-### Configure the RabbitMQ queue
+### 2 - Configure the RabbitMQ queue
 
 Follow the steps mentioned in the [configure RabbitMQ queue](docs/configure-rabbitmq-queue.md) to configure the RabbitMQ queue.
 
-### Enable Azure Container Apps for your subscription
+### 3 - Enable Azure Container Apps for your subscription
 
 Follow the steps mentioned in the [enable Azure Container Apps](docs/enable-azure-container-apps.md) to enable Azure Container Apps for your subscription.
 
-### Create Azure Container Apps environment
+### 4 - Deploy RabbitMQ Producer and Consumer applications to Azure Container Apps
 
-In order to make things easier, I have created a small powershell script to run all the commands related to setting up of the Azure Container Apps. You can find the script [here](powershell/setup-tech-talks-container-app.ps1).
-
-This script takes following parameters:
-
-- subscriptionName: The name of the subscription, defaults to `Microsoft Azure Sponsorship`
-- resourceGroupName: The name of the resource group, defaults to `azure-container-app-rg`
-- resourceGroupLocation: The location of the resource group, defaults to `eastus`
-- `environmentName` : Name of the environment, default value is `aci-dev-env`
-
-You can override the default values.
-
-First thing we need is to create an environment for the Azure Container Apps. The script run the following command to create an environment:
-
-```Powershell
-
-az containerapp env create `
-    --name $environmentName `
-    --resource-group $resourceGroupName `
-    --location $resourceGroupLocaltion
-
-```
-
-This will create an environment for the Azure Container Apps. The environment acts as a namespace for the Azure Container Apps. You can create multiple environments for different environments like dev, test, prod etc. For simplicity we will be using a single environment.
-
-### Create a Dapr component for RabbitMQ
-
-We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component:
-
-```Powershell
-
-az containerapp env dapr-component set `
-    --name $environmentName `
-    --resource-group $resourceGroupName `
-    --dapr-component-name rabbitmq-pubsub `
-    --yaml ../k8s/Dapr-components/rabbitmq-dapr.yaml
-
-```
-
-### Create RabbitMQ Producer Azure Container App
-
-Next we create an Azure Container App for the RabbitMQ Producer. The script runs the following command to create the Azure Container App:
-
-```Powershell
-
-az containerapp create `
-    --environment $environmentName `
-    --resource-group $resourceGroupName `
-    --name techtalks-producer `
-    --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp `
-    --registry-server ngacrregistry.azurecr.io `
-    --target-port 80 `
-    --ingress 'external' `
-    --enable-dapr `
-    --dapr-app-id rabbitmq-producer `
-    --dapr-app-port 80 `
-    --min-replicas 1 `
-    --max-replicas 3
-
-```
-
-Most of the parameters are self-explanatory. The `--enable-dapr` parameter enables Dapr for the Azure Container App. The `--dapr-app-id` parameter is the Dapr application id. The `--dapr-app-port` parameter is the port on which the Dapr sidecar will listen for requests. The `--min-replicas` and `--max-replicas` parameters are used to specify the minimum and maximum number of replicas for the Azure Container App.
-
-### Create RabbitMQ Consumer Azure Container App
-
-Next we create an Azure Container App for the RabbitMQ Consumer. The script runs the following command to create the Azure Container App:
-
-```Powershell
-
-az containerapp create `
-    --environment $environmentName `
-    --resource-group $resourceGroupName `
-    --name techtalks-consumer `
-    --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp `
-    --registry-server ngacrregistry.azurecr.io `
-    --target-port 80 `
-    --ingress 'internal' `
-    --enable-dapr `
-    --dapr-app-id rabbitmq-consumer `
-    --dapr-app-port 80 `
-    --min-replicas 1
-
-```
-
-Here also the parameters are self-explanatory. The only difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster.
+Follow the steps mentioned in the [Deploy RabbitMQ Producer and Consumer applications to Azure Container Apps](docs/deploy-producer-consumer.md) to deploy the RabbitMQ Producer and Consumer applications to Azure Container Apps.
 
 ### Enable KEDA for the Azure Container Apps
 
-We need to enable KEDA for the Azure Container Apps. This will allow us to scale the Azure Container App for techtalks consumer based on the queue length.
+We need to enable KEDA for the Azure Container Apps. This will allow us to scale the Azure Container App for techtalks consumer based on the messages in the RabbitMQ queue. THese messages are represented by the queue length property.
 
 First we create a secret for the RabbitMQ cluster. The script runs the following command to create the secret:
 
