@@ -12,7 +12,7 @@ THe usual practice is to have the Dockerfile in the same project directory as th
 
 ## Build container images using `docker-compose` command
 
-To build the docker images, run the following commands:
+To build the docker images, run the `docker-compose` command by passing the `[docker-compose-acr.yaml](src/docker-compose-acr.yml)` file as an argument.
 
 ```Powershell
 
@@ -24,7 +24,7 @@ This will build the images for both the microservices and tag them with the tag 
 
 ## Verify the container images
 
-We can verify that the images are created successfully by running the following command:
+We can verify that the images are created successfully by running the `docker images` command:
 
 ```Powershell
 
