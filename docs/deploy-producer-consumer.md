@@ -150,7 +150,7 @@ az containerapp list -g azure-container-app-rg --output table
 
 ```
 
-![Verify RabbitMQ Producer Azure Container App using CLI](/images/verify-azure-container-apps-environment-cli.png)
+![Verify RabbitMQ Producer Azure Container App using CLI](/images/verify-contianer-apps-cli.png)
 
 Note that at the time of taking the screenshot, both the RabbitMQ Producer and Consumer Azure Container Apps were deployed. The RabbitMQ Producer Azure Container App is the one with the name `techtalks-producer`.
 
