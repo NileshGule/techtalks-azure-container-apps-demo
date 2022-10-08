@@ -6,10 +6,10 @@ This repository is a demo for the Azure Container Apps. It showcases how to depl
 
 - Azure Subscription
 - Azure Container Registry (ACR) to publish the container images
+- Enable Azure Container Apps for your subscription
 - Azure CLI
 - Docker Desktop
 - RabbitMQ cluster
-- Enable Azure Container Apps for your subscription
 
 Note: I am using a `Azure Container Registry (ACR)` to publish the container images. You can use any container registry of your choice.
 
@@ -34,6 +34,10 @@ We are now all set to deploy the application to Azure Container Apps.
 Follow the steps mentioned in the [create RabbitMQ cluster](docs/create-rabbitmq-cluster.md) to create a RabbitMQ cluster.
 
 If you have an existing RabbitMQ cluster, you can skip this step. In this case you will need to update the configuration for the Dapr Pubsub component to point to your RabbitMQ cluster. The same configuration needs to be updated for the KEDA autoscaler configuration.
+
+### Configure the RabbitMQ queue
+
+Follow the steps mentioned in the [configure RabbitMQ queue](docs/configure-rabbitmq-queue.md) to configure the RabbitMQ queue.
 
 ### Enable Azure Container Apps for your subscription
 
