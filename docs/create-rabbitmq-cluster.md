@@ -36,4 +36,6 @@ Replace the placeholder `<<publicIP of the RabbitMQ server>>` with the public IP
 
 Below is a screenshot of the Azure Portal showing the public IP of the RabbitMQ server.
 
-![RabbitMQ public IP](images/rabbitmq-public-ip.png)
+![RabbitMQ public IP](/images/rabbitmq-public-ip.png)
+
+sudo rabbitmqctl change_password user tCUN6UizuwTZ
