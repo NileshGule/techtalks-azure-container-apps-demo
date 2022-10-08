@@ -8,7 +8,7 @@ The source code for the application is available in the [src](src) folder.
 
 In order to build multiple container images, we use the `docker-compose` command. Individual container images can be built using the `docker build` command. The Dockerfile for the TechTalksProducer and TechTalksConsumer applications are available in the [src](src) folder.
 
-THe usual practice is to have the Dockerfile in the same project directory as the source code. In this case, we have the Dockerfile in the [src](src) folder. This is because we are building multiple container images using the `docker-compose` command. We are also storing the Dockerfile outside the project directory because both the TechTalksProducer and TechTalksConsumer applications are .using a common library [TechTalksModel](src/TechTalksModel/).
+THe usual practice is to have the Dockerfile in the same project directory as the source code. In this case, we have the Dockerfile in the [src](src) folder. This is because we are building multiple container images using the `docker-compose` command. We are also storing the Dockerfile outside the project directory because both the TechTalksProducer and TechTalksConsumer applications are using a common library [TechTalksModel](src/TechTalksModel/).
 
 ## Build container images using `docker-compose` command
 
@@ -20,7 +20,7 @@ docker-compose -f docker-compose-acr.yml build
 
 ```
 
-This will build the images for both the microservices and tag them with the tag name `azurecontainerapp`. The images will be pushed to the Azure Container Registry (ACR). If you wish to change the container registry feel free to update the `docker-compose-acr.yml` file.
+This will build the images for both the microservices and tag them with the tag name `azurecontainerapp`. The images will be pushed to the `Azure Container Registry (ACR)`. If you wish to change the container registry feel free to update the `docker-compose-acr.yml` file. Replace the `ngacrregistry` with your container registry name.
 
 ## Verify the container images
 
