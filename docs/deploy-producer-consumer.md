@@ -56,7 +56,7 @@ az containerapp env list --output table
 
 This will list all the environments for the subscription. You should see the environment created in the previous step. We are using the `--output table` parameter to get the output in a tabular format.
 
-![Verify Azure Container Apps environment using CLI](/images/verify-azure-container-apps-environment-using-cli.png)
+![Verify Azure Container Apps environment using CLI](/images/verify-azure-container-apps-environment-cli.png)
 
 ### Verify Azure Container Apps environment using Azure Portal
 
