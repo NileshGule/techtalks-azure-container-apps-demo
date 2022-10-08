@@ -183,7 +183,9 @@ az containerapp create `
 
 ```
 
-Here also the parameters are self-explanatory. The only difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster.
+Here also the parameters are self-explanatory. The only major difference is that we are using `internal` ingress for the consumer. This means that the consumer will be accessible only from within the cluster. We are also not setting the `--max-replicas` parameter. This means that the consumer will not scale up.
+
+We do not want the consumer to scale up using the default scaling mechanism used by the Azure Container Apps. We want to demonstrate the behavior of autoscaling using Kubernetes-based Event Driven Autoscaling (KEDA). We will see how to configure KEDA in the later section.
 
 ### Verify RabbitMQ Consumer Azure Container App using CLI
 
