@@ -9,7 +9,7 @@ We will perform following steps to deploy the RabbitMQ Producer and Consumer app
 
 ## Automate the deployment process using a Powershell script
 
-In order to make things easier, I have created a small powershell script to run all the commands related to setting up of the Azure Container Apps. You can find the script [here](powershell/setup-tech-talks-container-app.ps1).
+In order to make things easier, I have created a small powershell script to run all the commands related to setting up of the Azure Container Apps. You can find the script named `setup-tech-talks-container-app.ps1` in the [powershell](powershell/setup-tech-talks-container-app.ps1) directory.
 
 This script takes following parameters:
 
