@@ -38,4 +38,26 @@ Below is a screenshot of the Azure Portal showing the public IP of the RabbitMQ 
 
 ![RabbitMQ public IP](/images/rabbitmq-public-ip.png)
 
+Once you are connected to the RabbitMQ server, run the following command to get the password for the `user` user.
+
+```Powershell
+
+cat ./bitnami_credentials
+
+```
+
+The output of the command will be similar to the following:
+
+![RabbitMQ default password](/images/rabbitmq-default-password.png)
+
+## Update the RabbitMQ password
+
+It is better to update the default password. Use the rabbitmq command-line utility `rabbitmqctl` to change the password for the `user` user.
+
+```Powershell
+
 sudo rabbitmqctl change_password user tCUN6UizuwTZ
+
+```
+
+You can replace the placeholder `tCUN6UizuwTZ` with the password you want to use. If you decide to change the password, make a note of it as we will need it later to configure the Dapr pubsub component as well as the KEDA autoscaler.
