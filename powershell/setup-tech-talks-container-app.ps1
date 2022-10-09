@@ -4,7 +4,7 @@ Param(
     [parameter(Mandatory = $false)]
     [string]$resourceGroupName = "azure-container-app-rg",
     [parameter(Mandatory = $false)]
-    [string]$resourceGroupLocaltion = "eastasia",
+    [string]$resourceGroupLocation = "eastasia",
     [parameter(Mandatory = $false)]
     [string]$environmentName = "aci-dev-env"
 )
@@ -20,10 +20,10 @@ Write-Host "$resourceGroupName exists : $aksRgExists"
 if ($aksRgExists -eq $false) {
 
     # Create resource group name
-    Write-Host "Creating resource group $resourceGroupName in region $resourceGroupLocaltion" -ForegroundColor Yellow
+    Write-Host "Creating resource group $resourceGroupName in region $resourceGroupLocation" -ForegroundColor Yellow
     az group create `
         --name=$resourceGroupName `
-        --location=$resourceGroupLocaltion `
+        --location=$resourceGroupLocation `
         --output=jsonc
 }
 
@@ -33,7 +33,7 @@ Write-Host "Creating Azure Container App environment named : $environmentName " 
 az containerapp env create `
     --name $environmentName `
     --resource-group $resourceGroupName `
-    --location $resourceGroupLocaltion
+    --location $
 
 Write-Host "Successfully created Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
 

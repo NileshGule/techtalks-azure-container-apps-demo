@@ -49,7 +49,7 @@ First thing we need is to create an environment for the Azure Container Apps. Th
 az containerapp env create `
     --name $environmentName `
     --resource-group $resourceGroupName `
-    --location $resourceGroupLocaltion
+    --location $resourceGroupLocation
 
 ```
 
@@ -73,15 +73,13 @@ This will list all the environments for the subscription. You should see the env
 
 We can verify the environment using the Azure Portal. Navigate to the Resource Group related to the container app in the Azure Portal and you should see the environment created.
 
-![Verify Azure Contianer Apps Environment](/images/verify-azure-container-apps-environment.png)
+![Verify Azure Container Apps Environment](/images/verify-azure-container-apps-environment.png)
 
 ---
 
 ## Create a Dapr component for RabbitMQ
 
 We need to create a Dapr component for RabbitMQ. This component will be used by the microservices to connect to the RabbitMQ cluster. The script runs the following command to create the component with the name `rabbitmq-pubsub` :
-
-````Powershell
 
 ```Powershell
 
@@ -91,7 +89,7 @@ az containerapp env dapr-component set `
     --dapr-component-name rabbitmq-pubsub `
     --yaml ../config/Dapr-components/rabbitmq-dapr.yaml
 
-````
+```
 
 All the metadata related to the RabbitMQ cluster is stored in the `rabbitmq-dapr.yaml` file. You can find the file [here](config/Dapr-components/rabbitmq-dapr.yaml). The file contains the following metadata:
 
@@ -206,7 +204,7 @@ We do not want the consumer to scale up using the default scaling mechanism used
 
 ### Verify RabbitMQ Consumer Azure Container App using CLI
 
-The steps to verify the RabbitMQ Consumer Azure Container App are the same as the RabbitMQ Producer Azure Container App. Infact we can use the same command to verify the RabbitMQ Consumer Azure Container App which we saw in the output of the earlier command when we tried to verify the RabbitMQ Producer Azure Container App.
+The steps to verify the RabbitMQ Consumer Azure Container App are the same as the RabbitMQ Producer Azure Container App. In fact we can use the same command to verify the RabbitMQ Consumer Azure Container App which we saw in the output of the earlier command when we tried to verify the RabbitMQ Producer Azure Container App.
 
 ### Verify RabbitMQ Consumer Azure Container App using Azure Portal
 
