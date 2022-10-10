@@ -20,6 +20,22 @@ az vm open-port --port 15672 --name rabbitmq `
 
 ```
 
+## Stop RabbitMQ VM when not in use
+
+```Powershell
+
+az vm stop --name rabbitmq --resource-group azure-container-app-rg
+
+```
+
+## Start RabbitMQ VM when required
+
+````Powershell
+
+az vm start --name rabbitmq --resource-group azure-container-app-rg
+
+```Powershell
+
 ## Link on creating RabbitMQ server using Azure CLI
 
 https://learn.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
@@ -27,3 +43,4 @@ https://learn.microsoft.com/en-us/azure/virtual-machines/linux/cli-ps-findimage
 ## Link to issue related to Dapr consumer for RabbitMQ
 
 https://stackoverflow.com/questions/65512137/dapr-binding-for-rabbitmq-not-working-using-dapr-pub-sub-sample
+````
