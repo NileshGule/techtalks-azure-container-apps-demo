@@ -53,59 +53,8 @@ Follow the steps mentioned in the [Test the Producer and Consumer apps](docs/05-
 
 ### Enable KEDA for the Azure Container Apps
 
-We need to enable KEDA for the Azure Container Apps. This will allow us to scale the Azure Container App for techtalks consumer based on the messages in the RabbitMQ queue. THese messages are represented by the queue length property.
-
-First we create a secret for the RabbitMQ cluster. The script runs the following command to create the secret:
-
-```Powershell
-
-az containerapp secret set `
-    --name techtalks-consumer `
-    --resource-group $resourceGroupName `
-    --secrets "rabbitmq-host=amqp://user:tCUN6UizuwTZ@20.24.98.54:5672/"
-
-```
-
-Next we create a KEDA scaler for the Azure Container App. The script runs the following command to create the scaler:
-
-```Powershell
-
-az containerapp update `
-    --name techtalks-consumer `
-    --resource-group $resourceGroupName `
-    --min-replicas 1 `
-    --max-replicas 15 `
-    --scale-rule-name "rabbitmq-keda-autoscale" `
-    --scale-rule-type "rabbitmq" `
-    --scale-rule-auth "host=rabbitmq-host" `
-    --scale-rule-metadata "queueName=rabbitmq-consumer-techtalks" `
-    "mode=QueueLength" `
-    "value=50" `
-    "protocol=amqp" `
-    "hostFromEnv=rabbitmq-host"
-
-```
-
-az containerapp update ` --name techtalks-consumer`
---resource-group azure-container-app-rg ` --min-replicas 1`
---max-replicas 1
-
-The `--scale-rule-name` parameter is the name of the scaler. The `--scale-rule-type` parameter is the type of the scaler. The `--scale-rule-auth` parameter is the name of the secret that contains the RabbitMQ connection string. The `--scale-rule-metadata` parameter contains the metadata for the scaler. The `queueName` parameter is the name of the queue. The `mode` parameter is the mode of the scaler. The `value` parameter is the value for the scaler. The `protocol` parameter is the protocol to use for the scaler. The `hostFromEnv` parameter is the name of the environment variable that contains the RabbitMQ connection string.
+Follow the steps mentioned in the [autoscale consumer using KEDA](docs/autoscale-consumer-using-keda.md) to enable KEDA for the Azure Container Apps.
 
 ### Delete resources
 
-The easiest way to delete the resources is to delete the resource group. The script runs the following command to delete the resource group:
-
-```powershell
-
-az group delete `
-    --name $resourceGroupName `
-    --yes
-
-```
-
-Note that the RabbitMQ VM is also deleted as part of the resource group deletion. If you wish to retain the RabbitMQ VM, you can delete the resource group manually from the Azure Portal. Alternately, you can delete the resource group using the Azure CLI. The script runs the following command to delete the resource group:
-
-```powershell
-
-```
+Refer to the [cleanup resources](docs/cleanup-resources.md) to delete the resources created for this demo.

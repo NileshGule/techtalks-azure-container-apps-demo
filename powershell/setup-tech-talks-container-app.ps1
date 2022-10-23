@@ -33,7 +33,7 @@ Write-Host "Creating Azure Container App environment named : $environmentName " 
 az containerapp env create `
     --name $environmentName `
     --resource-group $resourceGroupName `
-    --location $
+    --location $resourceGroupLocation
 
 Write-Host "Successfully created Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
 
