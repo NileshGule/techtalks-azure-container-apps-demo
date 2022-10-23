@@ -30,6 +30,8 @@ In the RabbitMQ management console, we can see that the messages are being consu
 
 ## Verify the messages are processed by the Consumer app using Logs
 
-We can also verify the messages are being processed by the Consumer app using the logs. The screenshot below shows the logs for the Consumer app. We can see the messages are being processed by the Consumer app. In order to access the logs from the Azure Container Apps, navigate to the Azure Portal and select the Azure Container App for the Consumer app. Click on the `Logs Stream` link under the `Monitoring` section.
+We can also verify the messages are being processed by the Consumer app using the logs. The screenshot below shows the logs for the Consumer app. We can see the messages are being processed by the Consumer app. In order to access the logs from the Azure Container Apps, navigate to the Azure Portal and select the Azure Container App for the Consumer app. Click on the `Log Stream` link under the `Monitoring` section.
 
 ![Consumer app logs](/images/techtalks-consumer-logs-stream.png)
+
+We can see the different attributes related to the Tech Talk like Id, name, Category and Level printed in the log.

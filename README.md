@@ -49,6 +49,8 @@ Follow the steps mentioned in the [Deploy RabbitMQ Producer and Consumer applica
 
 ### 5 - Test the applications
 
+Follow the steps mentioned in the [Test the Producer and Consumer apps](docs/05-test-producer-and-consumer.md) to test the applications.
+
 ### Enable KEDA for the Azure Container Apps
 
 We need to enable KEDA for the Azure Container Apps. This will allow us to scale the Azure Container App for techtalks consumer based on the messages in the RabbitMQ queue. THese messages are represented by the queue length property.
@@ -83,6 +85,10 @@ az containerapp update `
     "hostFromEnv=rabbitmq-host"
 
 ```
+
+az containerapp update ` --name techtalks-consumer`
+--resource-group azure-container-app-rg ` --min-replicas 1`
+--max-replicas 1
 
 The `--scale-rule-name` parameter is the name of the scaler. The `--scale-rule-type` parameter is the type of the scaler. The `--scale-rule-auth` parameter is the name of the secret that contains the RabbitMQ connection string. The `--scale-rule-metadata` parameter contains the metadata for the scaler. The `queueName` parameter is the name of the queue. The `mode` parameter is the mode of the scaler. The `value` parameter is the value for the scaler. The `protocol` parameter is the protocol to use for the scaler. The `hostFromEnv` parameter is the name of the environment variable that contains the RabbitMQ connection string.
 
