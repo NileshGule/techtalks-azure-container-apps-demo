@@ -4,11 +4,11 @@ This repository is a demo for the Azure Container Apps. It showcases how to depl
 
 ## Pre-requisites:
 
-- Azure Subscription
-- Azure Container Registry (ACR) to publish the container images
+- [Azure Subscription](https://azure.microsoft.com/en-us/free/)
+- [Azure Container Registry (ACR)](https://azure.microsoft.com/en-us/products/container-registry/) to publish the container images
 - Enable Azure Container Apps for your subscription
-- Azure CLI
-- Docker Desktop
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - RabbitMQ cluster
 
 Note: I am using a `Azure Container Registry (ACR)` to publish the container images. You can use any container registry of your choice.
