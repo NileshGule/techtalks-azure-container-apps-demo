@@ -34,7 +34,7 @@ az vm stop --name rabbitmq --resource-group azure-container-app-rg
 
 az vm start --name rabbitmq --resource-group azure-container-app-rg
 
-```Powershell
+```Powershell   
 
 ## Link on creating RabbitMQ server using Azure CLI
 
