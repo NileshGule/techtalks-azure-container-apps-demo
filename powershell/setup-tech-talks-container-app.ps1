@@ -47,6 +47,9 @@ if ($apsEnvExists -eq $false) {
 
     Write-Host "Successfully created Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
 }
+else {
+    Write-Host "Azure Container App environment named : $environmentName already exists"  -ForegroundColor Yellow
+}
 
 #Setup Pub Sub Dapr component
 Write-Host "Creating Dapr Pubsub component "  -ForegroundColor Yellow
@@ -114,7 +117,7 @@ az containerapp update `
     --name techtalks-consumer `
     --resource-group $resourceGroupName `
     --min-replicas 1 `
-    --max-replicas 40 `
+    --max-replicas 25 `
     --scale-rule-name "rabbitmq-keda-autoscale" `
     --scale-rule-type "rabbitmq" `
     --scale-rule-auth "host=rabbitmq-host" `
