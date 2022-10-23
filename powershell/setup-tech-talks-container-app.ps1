@@ -27,15 +27,26 @@ if ($aksRgExists -eq $false) {
         --output=jsonc
 }
 
-# Create Azure Container App environment
-Write-Host "Creating Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
-
-az containerapp env create `
+$apsEnv = az containerapp env show `
     --name $environmentName `
     --resource-group $resourceGroupName `
-    --location $resourceGroupLocation
+    --query name | ConvertFrom-Json
 
-Write-Host "Successfully created Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
+$apsEnvExists = $apsEnv.Length -gt 0
+
+if ($apsEnvExists -eq $false) {
+    
+    # Create Azure Container App environment
+    Write-Host "Creating Azure Container App environment $environmentName" -ForegroundColor Yellow
+
+    az containerapp env create `
+        --name $environmentName `
+        --resource-group $resourceGroupName `
+        --location $resourceGroupLocation `
+        --output=jsonc
+
+    Write-Host "Successfully created Azure Container App environment named : $environmentName "  -ForegroundColor Yellow
+}
 
 #Setup Pub Sub Dapr component
 Write-Host "Creating Dapr Pubsub component "  -ForegroundColor Yellow
