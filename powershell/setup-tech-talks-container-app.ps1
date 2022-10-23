@@ -103,7 +103,7 @@ az containerapp update `
     --name techtalks-consumer `
     --resource-group $resourceGroupName `
     --min-replicas 1 `
-    --max-replicas 15 `
+    --max-replicas 40 `
     --scale-rule-name "rabbitmq-keda-autoscale" `
     --scale-rule-type "rabbitmq" `
     --scale-rule-auth "host=rabbitmq-host" `

@@ -1,2 +1,2 @@
-GET https://techtalks-producer.happywater-d5036088.eastasia.azurecontainerapps.io/api/TechTalks/Generate
+GET https://techtalks-producer.mangoground-2435f5cf.eastasia.azurecontainerapps.io/api/TechTalks/Generate
 ?numberOfMessages=50000
