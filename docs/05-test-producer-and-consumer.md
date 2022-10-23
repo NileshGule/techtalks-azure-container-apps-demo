@@ -27,3 +27,9 @@ Note: Between the previous screenshot and this one, I have posted few more messa
 In the RabbitMQ management console, we can see that the messages are being consumed by the Consumer app. The screenshot below shows the messages being consumed by the Consumer app. We can see 1 consumer is running and 50 messages are being consumed. This 50 is the value we set in the [RabbitMQ Dapr configuration](/config/Dapr-components/rabbitmq-dapr.yaml) as the prefetch count.
 
 ![RabbitMQ messages consumed](/images/rabbitmq-consumer-consuming-messages.png)
+
+## Verify the messages are processed by the Consumer app using Logs
+
+We can also verify the messages are being processed by the Consumer app using the logs. The screenshot below shows the logs for the Consumer app. We can see the messages are being processed by the Consumer app. In order to access the logs from the Azure Container Apps, navigate to the Azure Portal and select the Azure Container App for the Consumer app. Click on the `Logs Stream` link under the `Monitoring` section.
+
+![Consumer app logs](/images/techtalks-consumer-logs-stream.png)
