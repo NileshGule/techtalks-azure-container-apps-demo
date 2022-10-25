@@ -31,6 +31,8 @@ else {
 }
 # define KEDA autoscaler
 
+Write-Host "Adding KEDA scaler to Tech Talks Consumer App"  -ForegroundColor Yellow
+
 az containerapp update `
     --name techtalks-consumer `
     --resource-group $resourceGroupName `
@@ -46,3 +48,4 @@ az containerapp update `
     "hostFromEnv=rabbitmq-host"
 
 
+Write-Host "Successfully Added KEDA scaler to Tech Talks Consumer App"  -ForegroundColor Yellow
