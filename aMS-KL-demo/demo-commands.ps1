@@ -12,7 +12,7 @@ az containerapp update `
     --name techtalks-consumer `
     --resource-group azure-container-app-rg `
     --min-replicas 1 `
-    --max-replicas 25 `
+    --max-replicas 1 
     
     
 # Remove Dapr component, used to reset Dapr in case of any config changes to Pubsub components
