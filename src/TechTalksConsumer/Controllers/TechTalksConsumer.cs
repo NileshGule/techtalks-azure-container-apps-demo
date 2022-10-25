@@ -16,7 +16,7 @@ namespace TechTalksAPI.Controllers
         [Topic("rabbitmq-pubsub", "techtalks")]
         public void Process([FromBody] TechTalk techTalk)
         {
-            // Sleep for 1/2 second to simulate processing
+            // Sleep for 250 milliseconds (1/4 of a second) to simulate processing
             Thread.Sleep(TimeSpan.FromMilliseconds(250));
 
             LogTechTalkDetails(techTalk);

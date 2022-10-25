@@ -1,2 +1,2 @@
 GET https://techtalks-producer.mangoground-2435f5cf.eastasia.azurecontainerapps.io/api/TechTalks/Generate
-?numberOfMessages=15000
+?numberOfMessages=5000
