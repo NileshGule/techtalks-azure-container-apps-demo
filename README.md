@@ -6,13 +6,13 @@ The application architecture along with the main components used are shown below
 
 ![Application Architecture](/images/application-architecture.png)
 
-Azure container apps have native integration with Dapr and KEDA open source projects. this demo shows how to use Dapr and KEDA to scale the consumer app based on the messages in the RabbitMQ queue.
+Azure container apps have native integration with [Dapr](Dapr.io) and [KEDA](keda.sh) open source projects. this demo shows how to use Dapr and KEDA to scale the consumer app based on the messages in the RabbitMQ queue.
 
 ## Pre-requisites:
 
 - [Azure Subscription](https://azure.microsoft.com/en-us/free/)
 - [Azure Container Registry (ACR)](https://azure.microsoft.com/en-us/products/container-registry/) to publish the container images
-- Enable Azure Container Apps for your subscription
+- [Enable Azure Container Apps](azure-container-apps-setup.md) for your subscription
 - [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - RabbitMQ cluster
