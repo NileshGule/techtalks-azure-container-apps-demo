@@ -35,3 +35,4 @@ We can also verify the messages are being processed by the Consumer app using th
 ![Consumer app logs](/images/techtalks-consumer-logs-stream.png)
 
 We can see the different attributes related to the Tech Talk like Id, name, Category and Level printed in the log.
+

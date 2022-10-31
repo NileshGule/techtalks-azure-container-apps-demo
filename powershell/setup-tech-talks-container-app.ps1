@@ -222,3 +222,7 @@ az containerapp update `
 #     --plan-product rabbitmq `
 #     --plan-publisher bitnami `
 #     --public-ip-sku Standard
+
+# delete resource group $resourceGroupName
+
+ 
