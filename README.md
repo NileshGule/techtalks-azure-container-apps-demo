@@ -2,6 +2,12 @@
 
 This repository is a demo for the Azure Container Apps. It showcases how to deploy a simple .Net core application consisting of two microservices a RabbitMQ Producer and a RabbitMQ Consumer.
 
+The application architecture along with the main components used are shown below.
+
+![Application Architecture](/images/application-architecture.png)
+
+Azure container apps have native integration with Dapr and KEDA open source projects. this demo shows how to use Dapr and KEDA to scale the consumer app based on the messages in the RabbitMQ queue.
+
 ## Pre-requisites:
 
 - [Azure Subscription](https://azure.microsoft.com/en-us/free/)
