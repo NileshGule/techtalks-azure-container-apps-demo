@@ -10,7 +10,7 @@ Navigate to the public IP address of the RabbitMQ cluster and `15672` port. For 
 
 Provide the credentials for the RabbitMQ cluster. The username is `user` and the password is `tCUN6UizuwTZ`. If you are using your own RabbitMQ cluster, update the credentials accordingly.
 
-![RabbitMQ Management Console](../images/rabbitmq-management-console.png)
+![RabbitMQ Management Console]({{site.baseurl}}/images/rabbitmq-management-console.png)
 
 ## Create an Exchange
 
