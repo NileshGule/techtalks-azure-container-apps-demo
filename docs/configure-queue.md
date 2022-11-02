@@ -10,13 +10,13 @@ Navigate to the public IP address of the RabbitMQ cluster and `15672` port. For 
 
 Provide the credentials for the RabbitMQ cluster. The username is `user` and the password is `tCUN6UizuwTZ`. If you are using your own RabbitMQ cluster, update the credentials accordingly.
 
-![RabbitMQ Management Console](/blob/main/images/rabbitmq-management-console.png)
+![RabbitMQ Management Console](/images/rabbitmq-management-console.png)
 
 ## Create an Exchange
 
 We will create an exchange named `techtalks` of the type `fanout`. The producer will publish messages to the exchange. Since we are using Dapr pubsub component, we need to follow some conventions. The topic name maps to the exchange name or rather a topic in Dapr terminology is an exchange in RabbitMQ.
 
-![Create Exchange](../images/techtalks-rabbitmq-exchange.png)
+![Create Exchange](/images/techtalks-rabbitmq-exchange.png)
 
 Ensure the techtalks exchange has following properties:
 
@@ -32,7 +32,7 @@ When running an application with app-id as `rabbitmq-consumer` with RabbitMQ sub
 
 Using this convention, the queue name will be `rabbitmq-consumer-techtalks`. Make the queue durable so that the messages are not lost when the consumer is not running.
 
-![RabbitMQ consumer TechTalks queue](../images/rabbitmq-consumer-techtalks-queue.png)
+![RabbitMQ consumer TechTalks queue](/images/rabbitmq-consumer-techtalks-queue.png)
 
 Ensure the rabbitmq-consumer-techtalks queue has following properties:
 
@@ -49,4 +49,4 @@ Navigate back to the Exchanges page and click on the `techtalks` exchange. Click
 
 In the screenshot below, we can see that the queue `rabbitmq-consumer-techtalks` is already bound to the exchange `techtalks`.
 
-![Bind queue to exchange](../images/bind-queue-to-exchange.png)
+![Bind queue to exchange](/images/bind-queue-to-exchange.png)
