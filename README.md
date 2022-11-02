@@ -43,7 +43,7 @@ If you have an existing RabbitMQ cluster, you can skip this step. In this case y
 
 ### 2 - Configure the RabbitMQ queue
 
-Follow the steps mentioned in the [configure RabbitMQ queue](docs/configure-rabbitmq-queue.md) to configure the RabbitMQ queue.
+Follow the steps mentioned in the [configure RabbitMQ queue](docs/configure-queue.md) to configure the RabbitMQ queue.
 
 ### 3 - Enable Azure Container Apps for your subscription
 
@@ -64,3 +64,7 @@ Follow the steps mentioned in the [autoscale consumer using KEDA](docs/autoscale
 ### Delete resources
 
 Refer to the [cleanup resources](docs/cleanup-resources.md) to delete the resources created for this demo.
+
+---
+
+## Public talks
