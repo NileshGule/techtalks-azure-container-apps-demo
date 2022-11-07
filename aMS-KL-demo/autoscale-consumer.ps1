@@ -29,6 +29,7 @@ if ($consumerAppSecretExists -eq $false) {
 else {
     Write-Host "Azure Container App Secret already exists"  -ForegroundColor Yellow
 }
+
 # define KEDA autoscaler
 
 Write-Host "Adding KEDA scaler to Tech Talks Consumer App"  -ForegroundColor Yellow

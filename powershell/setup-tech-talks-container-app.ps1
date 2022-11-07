@@ -160,7 +160,7 @@ if ($consumerAppSecretExists -eq $false) {
     az containerapp secret set `
         --name techtalks-consumer `
         --resource-group $resourceGroupName `
-        --secrets "rabbitmq-host=amqp://user:tCUN6UizuwTZ@20.24.98.54:5672/"
+        --secrets "rabbitmq-host=amqp://user:tCUN6UizuwTZ@20.187.96.34:5672/"
 
 }
 else {
