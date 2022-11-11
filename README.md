@@ -68,3 +68,5 @@ Refer to the [cleanup resources](docs/cleanup-resources.md) to delete the resour
 ---
 
 ## Public talks
+
+- [![AzureTar YouTube channel by Jorge Arteiro - Microservices developement with Azure Container Apps, Keda and Dapr](/images/microservices-with-keda-and-dapr.png)](https://youtu.be/w2fSyT37m4o)
