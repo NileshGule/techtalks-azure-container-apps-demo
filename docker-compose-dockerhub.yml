@@ -2,13 +2,13 @@ version: "3"
 
 services:
   techtalks.producer:
-    image: nilehgule/techtalksproducer:azurecontainerapp
+    image: nilehgule/techtalksproducer:azurecontainerapp7.0
     build:
       context: src
       dockerfile: Dockerfile-TechTalksMQProducer
 
   techtalks.consumer:
-    image: nileshgule/techtalksconsumer:azurecontainerapp
+    image: nileshgule/techtalksconsumer:azurecontainerapp7.0
     build:
       context: src
       dockerfile: Dockerfile-TechTalksConsumer

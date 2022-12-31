@@ -1,3 +1,3 @@
-GET https://techtalks-producer.mangoglacier-820a0321.eastasia.azurecontainerapps.io/api/TechTalks/Generate
-?numberOfMessages=15000
+GET https://techtalks-producer.bluepebble-5d1911ac.eastasia.azurecontainerapps.io/api/TechTalks/Generate
+?numberOfMessages=10000
 
