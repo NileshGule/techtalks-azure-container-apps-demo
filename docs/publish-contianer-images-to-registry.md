@@ -27,3 +27,5 @@ You can also use the Azure Portal to verify the container images.
 
 Navigate to the container registry in the Azure Portal and click on the `Repositories` tab. The output will be similar to the following:
 ![Images from container registry](/images/azure-portal-repositories.png)
+
+
