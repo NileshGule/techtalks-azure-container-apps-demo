@@ -92,7 +92,7 @@ if ($producerAppExists -eq $false) {
         --environment $environmentName `
         --resource-group $resourceGroupName `
         --name techtalks-producer `
-        --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp `
+        --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp7.0 `
         --registry-server ngacrregistry.azurecr.io `
         --target-port 80 `
         --ingress 'external' `
@@ -123,7 +123,7 @@ if ($consumerAppExists -eq $false) {
         --environment $environmentName `
         --resource-group $resourceGroupName `
         --name techtalks-consumer `
-        --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp `
+        --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp7.0 `
         --registry-server ngacrregistry.azurecr.io `
         --target-port 80 `
         --ingress 'internal' `
