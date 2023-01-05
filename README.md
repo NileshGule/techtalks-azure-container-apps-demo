@@ -71,4 +71,5 @@ Refer to the [cleanup resources](docs/cleanup-resources.md) to delete the resour
 
 - [![AzureTar YouTube channel by Jorge Arteiro - Microservices developement with Azure Container Apps, Keda and Dapr](/images/microservices-with-keda-and-dapr.png)](https://youtu.be/w2fSyT37m4o)
 - [![Festive Tech Calendar - Getting started with Azure Container Apps](/images/ftc-getting-started-with-ACA.png)](https://youtu.be/TIjEJdMaF3c)
-- [![YouTube video about creating RabbitMQ VM using Bitnami Marketplace image](/images/youtube-rabbitmq-azure-portal.png)](https://youtu.be/n0Je7yi-YaQ)
+- [![YouTube video about creating RabbitMQ VM using Bitnami Marketplace image and Azure Portal](/images/youtube-rabbitmq-azure-portal.png)](https://youtu.be/n0Je7yi-YaQ)
+- [![YouTube video about creating RabbitMQ VM using Bitnami Marketplace image and Azure CLI](/images/youtube-rabbitmq-azure-cli.png)](https://youtu.be/dFrh11SplwM)
