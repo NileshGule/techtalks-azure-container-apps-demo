@@ -92,7 +92,7 @@ if ($producerAppExists -eq $false) {
         --environment $environmentName `
         --resource-group $resourceGroupName `
         --name techtalks-producer `
-        --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp `
+        --image ngacrregistry.azurecr.io/techtalksproducer:azurecontainerapp7.0 `
         --registry-server ngacrregistry.azurecr.io `
         --target-port 80 `
         --ingress 'external' `
@@ -101,9 +101,6 @@ if ($producerAppExists -eq $false) {
         --dapr-app-port 80 `
         --min-replicas 1 `
         --max-replicas 3
-  
-    
-    #--query configuration.ingress.fqdn
     
     Write-Host "Successfully created Azure Container App for Producer "  -ForegroundColor Yellow
 }
@@ -126,103 +123,17 @@ if ($consumerAppExists -eq $false) {
         --environment $environmentName `
         --resource-group $resourceGroupName `
         --name techtalks-consumer `
-        --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp `
+        --image ngacrregistry.azurecr.io/techtalksconsumer:azurecontainerapp7.0 `
         --registry-server ngacrregistry.azurecr.io `
         --target-port 80 `
         --ingress 'internal' `
         --enable-dapr `
         --dapr-app-id rabbitmq-consumer `
         --dapr-app-port 80 `
-        --min-replicas 1 `
-  
-    
-    #--query configuration.ingress.fqdn
+        --min-replicas 1 
     
     Write-Host "Successfully created Azure Container App for Consumer "  -ForegroundColor Yellow
 }
 else {
     Write-Host "Azure Container App for Consumer already exists"  -ForegroundColor Yellow
 }  
-
-$consumerAppSecret = az containerapp secret show `
-    --resource-group $resourceGroupName `
-    --name techtalks-consumer `
-    --secret-name rabbitmq-host `
-    --query name | ConvertFrom-Json
-
-$consumerAppSecretExists = $consumerAppSecret.Length -gt 0
-
-if ($consumerAppSecretExists -eq $false) {
-
-    Write-Host "Creating Azure Container App Secret named rabbitmq-host"  -ForegroundColor Yellow
-
-    ##Create a new secret named 'rabbitmq-host' in backend processer container app
-    az containerapp secret set `
-        --name techtalks-consumer `
-        --resource-group $resourceGroupName `
-        --secrets "rabbitmq-host=amqp://user:tCUN6UizuwTZ@20.187.96.34:5672/"
-
-}
-else {
-    Write-Host "Azure Container App Secret already exists"  -ForegroundColor Yellow
-}
-# define KEDA autoscaler
-
-az containerapp update `
-    --name techtalks-consumer `
-    --resource-group $resourceGroupName `
-    --min-replicas 1 `
-    --max-replicas 25 `
-    --scale-rule-name "rabbitmq-keda-autoscale" `
-    --scale-rule-type "rabbitmq" `
-    --scale-rule-auth "host=rabbitmq-host" `
-    --scale-rule-metadata "queueName=rabbitmq-consumer-techtalks" `
-    "mode=QueueLength" `
-    "value=50" `
-    "protocol=amqp" `
-    "hostFromEnv=rabbitmq-host"
-
-# ##Query Number & names of Replicas
-# az containerapp replica list `
-#     --name techtalks-consumer `
-#     --resource-group azure-container-app-rg `
-#     --query [].name
-
-#verify deployment
-
-# $LOG_ANALYTICS_WORKSPACE_CLIENT_ID = az containerapp env show `
-#     --name $environmentName `
-#     --resource-group $resourceGroupName `
-#     --query properties.appLogsConfiguration.logAnalyticsConfiguration.customerId `
-#     --out tsv
-
-# az monitor log-analytics query `
-#     --workspace $LOG_ANALYTICS_WORKSPACE_CLIENT_ID `
-#     --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'tech-talks-producer' | project ContainerAppName_s, Log_s, TimeGenerated" `
-#     --out table
-
-# az monitor log-analytics query `
-#     --workspace 8b0a5149-3858-4a53-b05c-ecb0218b9e9a `
-#     --analytics-query "ContainerAppConsoleLogs_CL | where ContainerAppName_s == 'tech-talks-producer' | project ContainerAppName_s, Log_s, TimeGenerated" `
-#     --out table
-    
-
-# az containerapp env dapr-component remove `
-# -g azure-container-app-rg `
-# --dapr-component-name rabbitmq-pubsub `
-# --name aci-dev-env
-
-az vm create `
-    --resource-group azure-container-app-rg `
-    --name rabbitmq `
-    --admin-username azureuser `
-    --generate-ssh-keys `
-    --image bitnami:rabbitmq:rabbitmq:latest `
-    --plan-name rabbitmq `
-    --plan-product rabbitmq `
-    --plan-publisher bitnami `
-    --public-ip-sku Standard
-
-# delete resource group $resourceGroupName
-
- 

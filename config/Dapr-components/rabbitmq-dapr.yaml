@@ -2,7 +2,7 @@ componentType: pubsub.rabbitmq
 version: v1
 metadata:
 - name: host
-  value: 'amqp://user:tCUN6UizuwTZ@20.239.53.76:5672/'
+  value: 'amqp://user:tCUN6UizuwTZ@20.239.73.106:5672/'
 - name: durable
   value: true
 - name: deletedWhenUnused
