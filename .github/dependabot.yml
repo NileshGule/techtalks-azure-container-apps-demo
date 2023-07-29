@@ -11,6 +11,6 @@ updates:
       interval: "daily"
     # Allow up to 10 open pull requests for nuget dependencies
     open-pull-requests-limit: 10
-    ignore:
-      - dependency-name: 'RabbitMQ.Client'
-        versions: ['6.4.0']
+    # ignore:
+    #   - dependency-name: 'RabbitMQ.Client'
+    #     versions: ['6.4.0']
