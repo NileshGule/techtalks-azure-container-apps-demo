@@ -1,6 +1,8 @@
 # GET https://techtalks-producer.whiteocean-6297fc2c.eastasia.azurecontainerapps.io/api/TechTalks/Generate
 # ?numberOfMessages=10000
 
-https://techtalks-producer.wittysmoke-dd3f636d.eastasia.azurecontainerapps.io/api/TechTalks/Generate
-?numberOfMessages=10000
+# https://techtalks-producer.wittysmoke-dd3f636d.eastasia.azurecontainerapps.io/api/TechTalks/Generate
+# ?numberOfMessages=10000
 
+
+https://techtalks-producer.wittysmoke-dd3f636d.eastasia.azurecontainerapps.io/api/TechTalks/Generate?numberOfMessages=1000

@@ -7,6 +7,8 @@ Param(
     [string]$environmentName = "aci-dev-env"
 )
 
+   
+
 # Reset consumer replicas to 1, used to showcase initial state of the app
 az containerapp update `
     --name techtalks-consumer `
