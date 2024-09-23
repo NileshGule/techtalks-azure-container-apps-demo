@@ -58,6 +58,12 @@ It is better to update the default password. Use the rabbitmq command-line utili
 
 sudo rabbitmqctl change_password user tCUN6UizuwTZ
 
+sudo rabbitmqctl add_user test test
+sudo rabbitmqctl set_user_tags test administrator
+sudo rabbitmqctl set_permissions -p / test ".*" ".*" ".*"
+
 ```
 
 You can replace the placeholder `tCUN6UizuwTZ` with the password you want to use. If you decide to change the password, make a note of it as we will need it later to configure the Dapr pubsub component as well as the KEDA autoscaler.
+
+For recent versions of RabbitMQ guest user is not allowed. Need to use the test user with specific permissions when connecting from remote machine. This is applicable when creating the queue using Management UI. Update the cedentials accordingly.

@@ -4,7 +4,7 @@ Param(
     [parameter(Mandatory = $false)]
     [string]$resourceGroupName = "azure-container-app-rg",
     [parameter(Mandatory = $false)]
-    [string]$resourceGroupLocation = "eastasia",
+    [string]$resourceGroupLocation = "Australia East",
     [parameter(Mandatory = $false)]
     [string]$environmentName = "aci-dev-env"
 )
